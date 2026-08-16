@@ -7,6 +7,7 @@ import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.type.SqlTypes;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -27,11 +28,14 @@ public class Customer {
     private UUID id;
     private String name;
 
-    @Column(length = 255)
+    @Column
     private String email;
 
     @Version
     private Integer version;
     private LocalDateTime createdDate;
     private LocalDateTime updateDate;
+
+    @OneToMany(mappedBy = "customer")
+    private Set<BeerOrder> beerOrders;
 }
